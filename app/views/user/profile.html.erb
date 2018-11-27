@@ -18,9 +18,12 @@
 	<h1>Your posts</h1>
 
 
-	<ul class="list-group">
+	<ul class="list-group list-group-flush">
 		<% @posts.each do |post| %>
-			<li class="list-group-item"><%= post.content %></li>
+			<li class="list-group-item">
+				<p>Posted: <%= time_ago_in_words post.created_at %> ago</p>
+				<p><%= post.content %></p>
+			</li>
 		<% end %>
 	</ul>
 
