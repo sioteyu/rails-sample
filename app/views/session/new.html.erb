@@ -1,0 +1,12 @@
+<div class="login-frm">
+	<h1>Login</h1>
+	<%= form_for 'user', url: {action: 'create'} do |f| %>
+		<div class="form-group">
+			<%= f.label :Username%>
+			<%= f.text_field :username, class: 'form-control'%>
+			<%= f.label :Password%>
+			<%= f.password_field :password, class: 'form-control'%>
+		</div>
+		<%= f.submit :Login, class: 'btn btn-primary text-center'%>
+	<% end %>
+</div>

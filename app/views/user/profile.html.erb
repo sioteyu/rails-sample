@@ -1,0 +1,27 @@
+<div class="container-fluid">
+	<h3>Hey there welcome back, <%= @user.name %>! </h3>
+		<% if @user.isAdmin %>
+			<h5>You're an admin</h5>
+		<% else %>
+			<h5>You're not an admin</h5>
+		<% end %>
+	<%= link_to 'Edit Profile', edit_user_path(current_user.id), class: 'btn btn-primary' %>
+	<%= link_to 'Show all users', users_show_path, class: 'btn btn-primary' %>
+	<hr>
+
+	<h5>Write a post</h5>
+	<%= form_for @post do |f| %>
+		<%= f.text_area :content, class: 'form-control', placeholer: 'Write Your Thoughts', rows:8 %>
+		<%= f.submit :Post, class: 'btn btn-primary form-control' %>
+	<% end %>
+
+	<h1>Your posts</h1>
+
+
+	<ul class="list-group">
+		<% @posts.each do |post| %>
+			<li class="list-group-item"><%= post.content %></li>
+		<% end %>
+	</ul>
+
+</div>
