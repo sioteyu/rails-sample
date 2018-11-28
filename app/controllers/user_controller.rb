@@ -54,6 +54,7 @@ class UserController < ApplicationController
 
   def search
     @users = User.all
+    @friend = Friend.all
   end
 
   def destroy

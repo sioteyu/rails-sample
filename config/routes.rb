@@ -11,6 +11,7 @@ Rails.application.routes.draw do
   get '/users/show', to: 'user#users'
   post '/signup', to: 'user#create'
   post '/login', to: 'session#create'
+  post '/friend_request/accept', to: 'friend_request#accept'
   delete '/logout', to: 'session#destroy'
   delete '/user/delete', 'user#destroy'
   delete 'friend_request/delete', to: 'friend_request#destroy'

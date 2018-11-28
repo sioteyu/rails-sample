@@ -6,7 +6,7 @@
 			<% @friend_requests.each do |friend_request| %>
 				<tr>
 					<td><%= friend_request.name %></td>
-					<td><%= link_to 'Accept' %></td>
+					<td><%= link_to 'Accept', friend_request_accept_path(friend_request.target_id), method: :post %></td>
 					<td><%= link_to 'Deny', friend_request_delete_path(friend_request), method: :delete %></td>
 				</tr>
 			<% end %>
