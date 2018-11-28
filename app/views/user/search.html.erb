@@ -1,0 +1,27 @@
+<table class="table">
+	<tr>
+		<th>name</th>
+		<th>actions</th>
+	</tr>
+	<% @users.each do |user| %>
+		<% unless current_user.id == user.id %>
+			<tr>
+				<td><%= user.name %></td>
+				<% if user.friend_request.where(target_id:current_user.id).any? %>
+					<td>Awaiting acceptance</td>
+				<% elsif current_user.friend_request.where(target_id:user.id).any? %>
+					<td><%= link_to 'Accept' %> <%= link_to 'Deny' %></td>
+				<% else %>
+					<td>
+						<%= form_for 'friend_request', url:{action:'create', controller:'friend_request'} do |f| %>
+  						<div><%= hidden_field_tag :target_id, user.id %></div>
+  						<%= f.submit "Add as Friend", class: "btn btn-primary" %>
+						<% end %>
+					</td>
+				<% end %>
+
+			</tr>
+		<% end %>
+	<% end %>
+</table>
+<%= link_to 'Go Back', :back, class: 'btn btn-danger' %>

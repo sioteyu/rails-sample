@@ -52,6 +52,10 @@ class UserController < ApplicationController
     end
   end
 
+  def search
+    @users = User.all
+  end
+
   def destroy
     @user = User.find(params[:u_id])
     @user.destroy

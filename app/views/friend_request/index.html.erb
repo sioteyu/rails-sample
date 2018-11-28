@@ -1,0 +1,16 @@
+<div class="container-fluid">
+	<% if @friend_requests.empty? %>
+		<p>No Friend Request</p>
+	<% else %>
+		<table class="table">
+			<% @friend_requests.each do |friend_request| %>
+				<tr>
+					<td><%= friend_request.name %></td>
+					<td><%= link_to 'Accept' %></td>
+					<td><%= link_to 'Deny', friend_request_delete_path(friend_request), method: :delete %></td>
+				</tr>
+			<% end %>
+		</table>
+	<% end %>
+	<%= link_to 'Back', :back, class: 'btn btn-danger' %>
+</div>

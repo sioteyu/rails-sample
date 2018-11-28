@@ -7,6 +7,8 @@
 		<% end %>
 	<%= link_to 'Edit Profile', edit_user_path(current_user.id), class: 'btn btn-primary' %>
 	<%= link_to 'Show all users', users_show_path, class: 'btn btn-primary' %>
+	<%= link_to 'Friend Requests', friend_request_index_path, class: 'btn btn-primary' %>
+	<%= link_to 'Find Friends', users_search_path, class: 'btn btn-primary' %>
 	<hr>
 
 	<h5>Write a post</h5>
