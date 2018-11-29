@@ -9,6 +9,7 @@ gem 'bootstrap', '4.0'
 gem 'jquery-rails', '4.3.3'
 gem 'font-awesome-rails'
 gem 'bcrypt'
+gem "haml-rails", "~> 1.0"
 # Use sqlite3 as the database for Active Record
 gem 'sqlite3'
 # Use Puma as the app server

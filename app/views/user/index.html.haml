@@ -1,0 +1,24 @@
+.container
+	%table.table
+		%tr
+			%th Name
+			%th Username
+			%th Email
+			%th User Type
+			%th Actions
+
+		- @users.each do |user|
+			%tr
+				%td
+					= user.name
+				%td>
+					= user.username
+				%td
+					= user.email
+				- if user.isAdmin
+					%td Admin
+				- else
+					%td User
+				%td
+					= link_to 'Delete', user_delete_path(u_id:user.id), method: :delete,class: 'btn btn-danger'
+	= link_to 'Go Back', :back, class: 'btn btn-danger'

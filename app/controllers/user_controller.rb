@@ -1,6 +1,7 @@
 class UserController < ApplicationController
-  before_action :is_admin, only: [:index]
   before_action :user_logged_in, only: [:profile, :edit, :update, :search, :destroy]
+  before_action :is_admin, only: [:index]
+
   def index
     @users = User.all
   end
@@ -56,9 +57,14 @@ class UserController < ApplicationController
     end
 
     def is_admin
-      unless current_user.isAdmin
+      if current_user.nil?
         flash[:danger] = "Restricted access, Only admins can access this"
         redirect_to '/profile'
+      else
+        unless current_user.isAdmin
+          flash[:danger] = "Restricted access, Only admins can access this"
+          redirect_to '/profile'
+        end
       end
     end
 

@@ -1,0 +1,19 @@
+.login-frm
+	= form_for(@user) do |f|
+		.form-group
+			.form-row
+				.col
+					= f.label :Username
+					= f.text_field :username, class: 'form-control'
+					.col
+					= f.label :Password
+					= f.password_field :password, class: 'form-control'
+		.form-group
+			= f.label :Email
+			= f.text_field :email, class: 'form-control'
+
+		.form-group
+			= f.label :Full_Name
+			= f.text_field :name, class: 'form-control'
+
+		= f.submit :Edit_Details, class: 'btn btn-primary text-center'

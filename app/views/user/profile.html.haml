@@ -1,0 +1,32 @@
+.container-fluid
+	%h3
+		Welcome back,
+		= @user.name
+	- if @user.isAdmin
+		%h5 You're an admin
+	- else
+		%h5 You're not an admin
+
+	= link_to 'Edit Profile', edit_user_path(current_user.id), class: 'btn btn-primary'
+	= link_to 'Show all users', user_index_path, class: 'btn btn-primary'
+	= link_to 'Friend Requests', friend_request_index_path, class: 'btn btn-primary'
+	= link_to 'Find Friends', user_search_path, class: 'btn btn-primary'
+	= link_to 'My Friends', friends_path, class: 'btn btn-primary'
+	%hr
+
+	%h5 Write a post
+	= form_for @post do |f|
+		= f.text_area :content, class: 'form-control', placeholer: 'Write Your Thoughts', rows:8
+		= f.submit :Post, class: 'btn btn-primary form-control'
+
+	%h1 Your posts
+
+	%ul.list-group.list-group-flush
+		- @posts.each do |post|
+			%li.list-group-item
+				%p
+					posted
+					= time_ago_in_words post.created_at
+					ago
+				%p
+					= post.content

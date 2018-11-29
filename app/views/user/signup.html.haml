@@ -1,0 +1,7 @@
+.login-frm
+	%h1 Signup
+	- if @user.errors.any?
+		- @user.errors.full_messages.each do |msg|
+			.alert.alert-danger
+				= msg
+	= render 'signup_form'

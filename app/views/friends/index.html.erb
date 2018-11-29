@@ -9,6 +9,7 @@
 			<tr>
 				<td><%= friend.name %></td>
 				<td><%= friend.email %></td>
+				<td><%= link_to 'Unfriend', friends_path(friend), method: :delete, class: 'btn btn-danger' %></td>
 			</tr>
 		<% end %>
 	<% end %>
