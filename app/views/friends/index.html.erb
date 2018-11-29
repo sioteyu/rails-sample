@@ -1,0 +1,16 @@
+<table class="table">
+	<tr>
+		<th>Name</th>
+		<th>Email</th>
+		<th>Action</th>
+	</tr>
+	<% @friends.each do |friend| %>
+		<% unless friend.email == current_user.email %>
+			<tr>
+				<td><%= friend.name %></td>
+				<td><%= friend.email %></td>
+			</tr>
+		<% end %>
+	<% end %>
+</table>
+<%= link_to 'Go Back', :back, class: 'btn btn-danger' %>

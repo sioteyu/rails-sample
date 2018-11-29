@@ -1,6 +1,8 @@
 class UserController < ApplicationController
+  before_action :is_admin, only: [:index]
+  before_action :user_logged_in, only: [:profile, :edit, :update, :search, :destroy]
   def index
-
+    @users = User.all
   end
 
   def signup
@@ -11,22 +13,16 @@ class UserController < ApplicationController
     @user = User.create(user_params)
     if @user.save
       flash[:success] = "Successfully created a new user"
-      render 'index'
+      redirect_to '/'
     else
       render 'signup'
     end
   end
 
   def profile
-    if logged_in?
-      @user = current_user
-      @post = @user.post.new
-      @posts = @user.post.all
-    else
-      flash[:danger] = "Log in first!"
-      redirect_to '/login'
-    end
-
+    @user = current_user
+    @post = @user.post.new
+    @posts = @user.post.all
   end
 
   def edit
@@ -40,15 +36,6 @@ class UserController < ApplicationController
       redirect_to '/profile'
     else
       render 'edit'
-    end
-  end
-
-  def users
-    if current_user.isAdmin
-      @users = User.all
-    else
-      flash[:danger] = "Restricted access, Only admins can access this"
-      redirect_to '/profile'
     end
   end
 
@@ -66,5 +53,19 @@ class UserController < ApplicationController
   private
     def user_params
       params.require(:user).permit(:username, :password, :email, :name, :isAdmin)
+    end
+
+    def is_admin
+      unless current_user.isAdmin
+        flash[:danger] = "Restricted access, Only admins can access this"
+        redirect_to '/profile'
+      end
+    end
+
+    def user_logged_in
+      unless logged_in?
+        flash[:danger] = "Please login first"
+        redirect_to '/login'
+      end
     end
 end
