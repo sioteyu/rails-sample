@@ -1,0 +1,20 @@
+.row
+	= render 'user/sidenav'
+	.col-md-10
+		%table.table
+			%tr
+				%th Name
+				%th Email
+				%th Action
+
+			- @friends.each do |friend|
+				- unless friend.email == current_user.email
+					%tr
+						%td
+							= friend.name
+						%td
+							= friend.email
+						%td
+							= link_to 'Unfriend', friend_path(friend), method: :delete, class: 'btn btn-danger'
+
+		= link_to 'Go Back', :back, class: 'btn btn-danger'

@@ -1,2 +1,18 @@
 %h1.text-center Hey you're at our homepage
-= image_tag 'banner.png', class: 'img-fluid w-100'
+.carousel.slide{id:'carousel-indicator', 'data-ride': 'carousel'}
+	%ol.carousel-indicators
+		%li.active{'data-target': '#carousel-indicator', 'data-slide-to': '0'}
+		%li{'data-target': '#carousel-indicator', 'data-slide-to': '1'}
+		%li{'data-target': '#carousel-indicator', 'data-slide-to': '2'}
+
+	.carousel-inner
+		.carousel-item.active
+			= image_tag 'friend1', class: 'd-block w-100'
+		.carousel-item
+			= image_tag 'friend2', class: 'd-block w-100'
+		.carousel-item
+			= image_tag 'friend3', class: 'd-block w-100'
+	%a.carousel-control-prev.text-dark{href: '#carousel-indicator', 'data-slide': 'prev'}
+		%span.carousel-control-prev-icon
+	%a.carousel-control-next{href: '#carousel-indicator', 'data-slide': 'next'}
+		%span.carousel-control-next-icon

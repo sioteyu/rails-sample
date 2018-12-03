@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'test/index'
   root 'static_pages#home'
   resources 'user', only: [:create, :update, :destroy, :edit, :index]
   resources 'posts', only: [:create]

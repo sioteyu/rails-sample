@@ -1,25 +1,28 @@
-%table.table
-	%tr
-		%th name
-		%th actions
-	- @users.each do |user|
-		- unless current_user.id == user.id
+.row
+	= render 'sidenav'
+	.col-md-10
+		%table.table
 			%tr
-				%td
-					= user.name
-				- if @friend.find_by(user_1:current_user.id, user_2:user.id)||@friend.find_by(user_1:user.id, user_2:current_user.id)
-					%td Already Friends
-				- elsif user.friend_request.where(target_id:current_user.id).any?
-					%td Awaiting acceptance
-				- elsif current_user.friend_request.where(target_id:user.id).any?
-					%td
-						= link_to 'Accept', friend_request_accept_path(user.id), method: :post
-					%td
-						= link_to 'Deny', friend_request_delete_path(current_user.friend_request.find_by(target_id:user.id)), method: :delete
-				- else
-					%td
-						= form_for 'friend_request', url:{action:'create', controller:'friend_request'} do |f|
-							%div
-								= hidden_field_tag :target_id, user.id
-								= f.submit "Add as Friend", class: "btn btn-primary"
-= link_to 'Go Back', :back, class: 'btn btn-danger'
+				%th name
+				%th actions
+			- @users.each do |user|
+				- unless current_user.id == user.id
+					%tr
+						%td
+							= user.name
+						- if @friend.find_by(user_1:current_user.id, user_2:user.id)||@friend.find_by(user_1:user.id, user_2:current_user.id)
+							%td Already Friends
+						- elsif user.friend_request.where(target_id:current_user.id).any?
+							%td Awaiting acceptance
+						- elsif current_user.friend_request.where(target_id:user.id).any?
+							%td
+								= link_to 'Accept', friend_request_accept_path(user.id), method: :post
+							%td
+								= link_to 'Deny', friend_request_delete_path(current_user.friend_request.find_by(target_id:user.id)), method: :delete
+						- else
+							%td
+								= form_for 'friend_request', url:{action:'create', controller:'friend_request'} do |f|
+									%div
+										= hidden_field_tag :target_id, user.id
+										= f.submit "Add as Friend", class: "btn btn-primary"
+		= link_to 'Go Back', :back, class: 'btn btn-danger'

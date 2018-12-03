@@ -1,0 +1,31 @@
+.col-md-2.side-bg
+	.row
+		.col-2
+			%span.fa.fa-user
+		.col-10.m-auto
+			= link_to 'Profile', profile_path, class: 'nav-link'
+	.row
+		.col-2
+			%span.fa.fa-edit
+		.col-10.m-auto
+			= link_to 'Edit Profile', edit_user_path(current_user.id), class: 'nav-link'
+	.row
+		.col-2
+			%span.fa.fa-eye
+		.col-10.m-auto
+			= link_to 'Show all users', user_index_path, class: 'nav-link'
+	.row
+		.col-2
+			%span.fa.fa-user-plus
+		.col-10.m-auto
+			= link_to 'Friend Requests', friend_request_index_path, class: 'nav-link'
+	.row
+		.col-2
+			%span.fa.fa-search
+		.col-10.m-auto
+			= link_to 'Find Friends', user_search_path, class: 'nav-link'
+	.row
+		.col-2
+			%span.fa.fa-users
+		.col-10.m-auto
+			= link_to 'My Friends', friends_path, class: 'nav-link'
