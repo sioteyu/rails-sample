@@ -23,7 +23,7 @@ class UserController < ApplicationController
   def profile
     @user = current_user
     @post = @user.post.new
-    @posts = @user.post.paginate(page: params[:page])
+    @posts = @user.post.paginate(page: params[:page], per_page: 10)
   end
 
   def edit

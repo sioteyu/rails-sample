@@ -7,7 +7,9 @@ class FriendRequestController < ApplicationController
     target = User.find_by(id:params[:target_id])
     target.friend_request.build(target_id:current_user.id, name:current_user.name)
     if target.save
-      redirect_to '/user/search'
+      respond_to do |f|
+        f.json
+      end
     end
   end
 
