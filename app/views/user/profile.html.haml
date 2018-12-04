@@ -14,18 +14,13 @@
 			%hr
 
 			%h5 Write a post
-			= form_for @post do |f|
+			= form_for @post, remote: true do |f|
 				= f.text_area :content, class: 'form-control', placeholer: 'Write Your Thoughts', rows:8
-				= f.submit :Post, class: 'btn btn-primary form-control'
+				= f.submit :Post, class: 'btn btn-primary form-control', id: 'post_submit'
 
 			%h1 Your posts
+			= will_paginate @posts
+			%ul.list-group.list-group-flush{id: 'posts'}
 
-			%ul.list-group.list-group-flush
 				- @posts.each do |post|
-					%li.list-group-item
-						%p
-							posted
-							= time_ago_in_words post.created_at
-							ago
-						%p
-							= post.content
+					= render partial: 'post', locals: {post: post}

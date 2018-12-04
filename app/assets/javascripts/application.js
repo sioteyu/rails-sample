@@ -17,3 +17,17 @@
 //= require activestorage
 //= require turbolinks
 //= require_tree .
+
+$(document).ready(function () {
+	$('#post_submit').on('click', function (event) {
+		event.preventDefault();
+		$.ajax({
+			type: 'POST',
+			url: '/posts',
+			data: {content: $('#post_content').val()},
+			success: function (data) {
+				$('#posts').prepend(data.post);
+			}
+		})
+	})
+});
