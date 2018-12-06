@@ -48,7 +48,11 @@ class UserController < ApplicationController
   def destroy
     @user = User.find(params[:u_id])
     @user.destroy
-    redirect_to '/users/show'
+    respond_to do |f|
+      f.json {
+        render json:params[:u_id]
+      }
+    end
   end
 
   private

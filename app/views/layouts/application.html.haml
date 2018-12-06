@@ -13,5 +13,6 @@
       = content_tag :div, value, class: "alert alert-#{key}"
 
     - flash.discard
+    .errors
     = yield
     = render 'layouts/footer'

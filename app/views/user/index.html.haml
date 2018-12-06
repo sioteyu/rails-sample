@@ -11,7 +11,7 @@
 					%th Actions
 
 				- @users.each do |user|
-					%tr
+					%tr{id: 'user-'+user.id.to_s}
 						%td
 							= user.name
 						%td>
@@ -23,5 +23,5 @@
 						- else
 							%td User
 						%td
-							= link_to 'Delete', user_delete_path(u_id:user.id), method: :delete,class: 'btn btn-outline-danger'
+							= link_to 'Delete', user_delete_path(u_id:user.id), method: :delete,class: 'btn btn-outline-danger', remote: true
 			= link_to 'Go Back', :back, class: 'btn btn-secondary'
