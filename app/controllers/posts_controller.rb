@@ -4,7 +4,7 @@ class PostsController < ApplicationController
 		@post.save
 		respond_to do |format|
 			format.js {
-				render layout: false
+				render
 			}
 		end
 	end
