@@ -3,15 +3,8 @@ class PostsController < ApplicationController
 		@post = current_user.post.build(post_params)
 		@post.save
 		respond_to do |format|
-			format.json{
-				render json: {
-					post: render_to_string(
-						partial:'user/post',
-						layout: false,
-						formats: :html,
-						locals: {post:@post}
-					)
-				}
+			format.js {
+				render layout: false
 			}
 		end
 	end

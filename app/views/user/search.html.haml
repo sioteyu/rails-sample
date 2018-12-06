@@ -21,8 +21,8 @@
 								= link_to 'Deny', friend_request_delete_path(current_user.friend_request.find_by(target_id:user.id)), method: :delete
 						- else
 							%td
-								= form_for 'friend_request', url:{action:'create', controller:'friend_request'}, remote: true do |f|
+								= form_for 'friend_request', url:{action:'create', controller:'friend_request'}, html: {id: 'add_friend'}, remote: true do |f|
 									%div
 										= hidden_field_tag :target_id, user.id
-										= f.submit "Add as Friend", class: "btn btn-primary", id: 'request_submit'
+										= f.submit "Add as Friend", class: "btn btn-primary"
 		= link_to 'Go Back', :back, class: 'btn btn-danger'

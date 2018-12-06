@@ -6,10 +6,11 @@ class FriendRequestController < ApplicationController
   def create
     target = User.find_by(id:params[:target_id])
     target.friend_request.build(target_id:current_user.id, name:current_user.name)
-    if target.save
-      respond_to do |f|
-        f.json
-      end
+    target.save
+    respond_to do |f|
+      f.json {
+        render json: 'success'
+      }
     end
   end
 
