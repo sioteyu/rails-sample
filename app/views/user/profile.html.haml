@@ -22,5 +22,6 @@
 			= will_paginate @posts
 			%ul.list-group.list-group-flush{id: 'posts'}
 
-				- @posts.each do |post|
-					= render partial: 'post', locals: {post: post}
+				- @posts.each do |p|
+					- present(p) do |post|
+						= render partial: 'post', locals: {post: post}

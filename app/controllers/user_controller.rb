@@ -21,7 +21,7 @@ class UserController < ApplicationController
   end
 
   def profile
-    @user = current_user
+    @user = helpers.current_user
     @post = @user.post.new
     @posts = @user.post.paginate(page: params[:page], per_page: 10)
   end
@@ -61,11 +61,11 @@ class UserController < ApplicationController
     end
 
     def is_admin
-      if current_user.nil?
+      if helpers.current_user.nil?
         flash[:danger] = "Restricted access, Only admins can access this"
         redirect_to '/profile'
       else
-        unless current_user.isAdmin
+        unless helpers.current_user.isAdmin
           flash[:danger] = "Restricted access, Only admins can access this"
           redirect_to '/profile'
         end
@@ -73,7 +73,7 @@ class UserController < ApplicationController
     end
 
     def user_logged_in
-      unless logged_in?
+      unless helpers.logged_in?
         flash[:danger] = "Please login first"
         redirect_to '/login'
       end

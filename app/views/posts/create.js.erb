@@ -1,7 +1,10 @@
 $(document).ready(function () {
 	<% if @post.valid? %>
-		$("<%= j render partial: 'user/post', locals: {post: @post}%>").hide().prependTo('#posts').slideDown(500);
-		$('#new_post')[0].reset();
+		<% present(@post) do |post|%>
+			$("<%= j render partial: 'user/post', locals: {post: post}%>").hide().prependTo('#posts').slideDown(500);
+			$('#new_post')[0].reset();
+		<% end %>
+
 	<% else %>
 		$('.errors').append('<div class="alert alert-danger">Empty post try again</div>');
 		setTimeout(function () {

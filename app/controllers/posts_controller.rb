@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
 	def create
-		@post = current_user.post.build(post_params)
+		@post = helpers.current_user.post.build(post_params)
 		@post.save
 		respond_to do |format|
 			format.js {
